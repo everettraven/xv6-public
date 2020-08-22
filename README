@@ -1,3 +1,5 @@
+THIS IS A FORK TO BE USED FOR MAKING CHANGES FOR CLASSWORK FOR THE FLORIDA POLYTECHNIC UNIVERSITY CLASS "OPERATING SYSTEM CONCEPTS"
+
 NOTE: we have stopped maintaining the x86 version of xv6, and switched
 our efforts to the RISC-V version
 (https://github.com/mit-pdos/xv6-riscv.git)
