@@ -77,7 +77,6 @@ main(int argc, char *argv[])
 
   if(argc < 2){
     ls(".");
-    printf(1, "I changed ls...");
     exit();
   }
   for(i=1; i<argc; i++)
