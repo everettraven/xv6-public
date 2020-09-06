@@ -7,7 +7,7 @@ int main(int argc, char * argv[])
 {
     int arr_len = argc - 1;
     int arr_start = 1;
-    int inbuf;
+    char inbuf[20];
     int p[2];
     int num_children = 1;
     printf("I am parent with pid: %d, sending the array: ", (int) getpid());
@@ -41,18 +41,19 @@ int main(int argc, char * argv[])
         }
         else
         {
-            write(p[1], sum, sizeof(int));
+            char * sum_char = sum + '0';
+            write(p[1], sum_char, 20);
         }
     }
     else {
-        int rc_wait = wait(NULL);
+        wait(NULL);
         int total = 0;
         printf("I am parent with pid: %d, recieving partial sum: ", (int) getpid());
         for(int i = 0; i < num_children; i++)
         {
-            read(p[1], inbuf, sizeof(int));
-            total += inbuf;
-            printf("%d, ", inbuf);
+            read(p[1], inbuf, 20);
+            total += atoi(inbuf);
+            printf("%d, ", atoi(inbuf));
         }
 
         printf("and printing: %d", total);
