@@ -44,7 +44,7 @@ int main(int argc, char * argv[])
             int * sum_send = &sum;
             write(p[1], sum_send, sizeof(int *));
         }
-        exit()
+        exit();
     }
     else {
         rc = wait();
