@@ -41,7 +41,7 @@ int main(int argc, char * argv[])
         }
         else
         {
-            char * sum_char = sum + '0';
+            char * sum_char = {sum + '0', '\0'};
             write(p[1], sum_char, 20);
         }
     }
