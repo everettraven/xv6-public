@@ -52,7 +52,7 @@ int main(int argc, char * argv[])
         printf(1, "I am parent with pid: %d, recieving partial sum: ", (int) getpid());
         for(int i = 0; i < num_children; i++)
         {
-            read(p[1], inbuf, 20);
+            read(p[1], inbuf, sizeof(int *));
             total += *inbuf;
             printf(1, "%d, ", *inbuf);
         }
