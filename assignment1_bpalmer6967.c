@@ -44,9 +44,11 @@ int main(int argc, char * argv[])
             int * sum_send = &sum;
             write(p[1], sum_send, sizeof(int *));
         }
+        exit()
     }
     else {
         rc = wait();
+        close(p[1]);
 
         int total = 0;
         printf(1, "I am parent with pid: %d, recieving partial sum: ", (int) getpid());
