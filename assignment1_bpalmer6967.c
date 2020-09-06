@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
         }
     }
     else {
-        int pid = wait();
+        rc = wait();
 
         int total = 0;
         printf(1, "I am parent with pid: %d, recieving partial sum: ", (int) getpid());
