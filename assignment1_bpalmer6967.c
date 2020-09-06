@@ -4,11 +4,11 @@
 
 int main(int argc, char * argv[])
 {
-    int arr_len = argc - 1;
-    int arr_start = 1;
+    int arr_len = argc - 2;
+    int arr_start = 2;
     int * inbuf = malloc(sizeof(int *) * 1);
     int p[2];
-    int num_children = atoi(argv[0]);
+    int num_children = atoi(argv[1]);
 
     printf(1, "I am parent with pid: %d, sending the array: ", (int) getpid());
     for (int i = arr_start; i < arr_len; i++)
