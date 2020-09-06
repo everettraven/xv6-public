@@ -6,9 +6,9 @@ int main(int argc, char * argv[])
 {
     int arr_len = argc - 1;
     int arr_start = 1;
-    char inbuf[20];
+    int * inbuf;
     int p[2];
-    int num_children = 1;
+    int num_children = atoi(argv[0]);
 
     printf(1, "I am parent with pid: %d, sending the array: ", (int) getpid());
     for (int i = arr_start; i < arr_len; i++)
@@ -28,7 +28,7 @@ int main(int argc, char * argv[])
     {
         int sum = 0;
         printf(1, "I am child with pid: %d, adding the array: ");
-        for(int i = 0; i < arr_len; i++)
+        for(int i = arr_start; i < arr_len; i++)
         {
             printf(1, "%d ", atoi(argv[i]));
             sum += atoi(argv[i]);
@@ -41,19 +41,20 @@ int main(int argc, char * argv[])
         }
         else
         {
-            char sum_char[] = {sum + '0', '\0'};
-            write(p[1], sum_char, 20);
+            int * sum_send = sum;
+            write(p[1], sum_send, sizeof(int *));
         }
     }
     else {
-        wait();
+        int rc_wait = wait();
+
         int total = 0;
         printf(1, "I am parent with pid: %d, recieving partial sum: ", (int) getpid());
         for(int i = 0; i < num_children; i++)
         {
             read(p[1], inbuf, 20);
-            total += atoi(inbuf);
-            printf(1, "%d, ", atoi(inbuf));
+            total += *inbuf;
+            printf(1, "%d, ", *inbuf);
         }
 
         printf(1, "and printing: %d", total);
