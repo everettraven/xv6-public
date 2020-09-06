@@ -6,7 +6,7 @@ int main(int argc, char * argv[])
 {
     int arr_len = argc - 1;
     int arr_start = 1;
-    int * inbuf;
+    int * inbuf = malloc(sizeof(int *) * 1);
     int p[2];
     int num_children = atoi(argv[0]);
 
@@ -41,12 +41,12 @@ int main(int argc, char * argv[])
         }
         else
         {
-            int * sum_send = sum;
+            int * sum_send = &sum;
             write(p[1], sum_send, sizeof(int *));
         }
     }
     else {
-        int rc_wait = wait();
+        wait();
 
         int total = 0;
         printf(1, "I am parent with pid: %d, recieving partial sum: ", (int) getpid());
